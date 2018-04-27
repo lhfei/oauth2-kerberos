@@ -1,0 +1,17 @@
+server:
+  port: 16000
+  servlet:
+    context-path: /ldap/api/v1
+
+logging:
+  level:
+    .: info
+    com.jd.auth.ldap: debug
+    org.springframework: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+auth:
+  ldap:
+    url: ldap://openldap.jd.com:389

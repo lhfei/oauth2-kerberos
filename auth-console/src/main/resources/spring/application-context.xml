@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ldap="http://www.springframework.org/schema/ldap"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/ldap http://www.springframework.org/schema/ldap/spring-ldap.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<context:property-placeholder location="classpath:/ldap.properties"
+		system-properties-mode="OVERRIDE" />
+	<context:annotation-config />
+	<context:component-scan base-package="cn.lhfei.auth.console"></context:component-scan>
+
+	<ldap:context-source id="contextSource" password="${auth.ldap.password}"
+		url="${auth.ldap.url}" username="${auth.ldap.userDn}" base="${auth.ldap.base}"
+		native-pooling="true" />
+
+	<ldap:ldap-template id="ldapTemplate" context-source-ref="contextSource" />
+	
+	<bean class="org.springframework.ldap.core.support.BaseLdapPathBeanPostProcessor">
+	</bean>
+</beans>

@@ -1,0 +1,27 @@
+server:
+  port: 16001
+  context-path: /oauth2
+
+security:
+  basic:
+    enabled: false
+    
+spring:
+  ldap:
+    base: dc=jd,dc=com
+    urls:
+    - ldap://openldap.jd.com:389
+    username: cn=Manager,dc=jd,dc=com
+    password: Polaris@Root#01
+
+  thymeleaf:
+    cache: false
+    
+logging:
+  level:
+    .: info
+    com.jd.security.auth: debug
+    org.springframework: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

@@ -1,0 +1,20 @@
+server:
+  port: 16003
+  servlet:
+    context-path: /krb5/api/v1
+
+logging:
+  level:
+    .: info
+    com.jd.auth: debug
+    org.springframework: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+## Krb5 Settings
+krb5:
+  kdcserver:
+    username: root
+    password: Lhfei@01
+    hostname: openldap.jd.com

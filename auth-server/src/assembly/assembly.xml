@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<assembly>
+	<id>alpha</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<!-- -->
+		<fileSet>
+			<directory>${project.basedir}/src/main/resources/</directory>
+			<outputDirectory>conf</outputDirectory>
+			<includes>
+				<include>*.xml</include>
+				<include>*.properties</include>
+				<include>**/*.xml</include>
+				<include>**/*.properties</include>
+			</includes>
+
+			<fileMode>0644</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/src/assembly/scripts/</directory>
+			<includes>
+				<include>**/*.sh</include>
+				<include>**/*.bat</include>
+			</includes>
+			<outputDirectory>bin</outputDirectory>
+			<fileMode>0755</fileMode>
+		</fileSet>
+	</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+</assembly>
