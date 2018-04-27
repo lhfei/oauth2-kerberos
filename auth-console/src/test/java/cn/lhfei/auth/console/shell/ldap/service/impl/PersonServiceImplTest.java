@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jd.auth.ldap.service.impl;
+package cn.lhfei.auth.console.shell.ldap.service.impl;
 
 import java.util.List;
 

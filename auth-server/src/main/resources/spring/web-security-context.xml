@@ -28,7 +28,7 @@
 	</bean>
 	
 	<bean id="securityContext" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
-		<constructor-arg value="ldap://openldap.jd.com:389"></constructor-arg>
+		<constructor-arg value="ldap://openldap.lhfei.com:389"></constructor-arg>
 		<constructor-arg value="dc=jd,dc=com"></constructor-arg>
 	</bean>
 	

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jd.auth.console.shell;
+package cn.lhfei.auth.console.shell.console.shell;
 
 import org.junit.Test;
 
@@ -35,16 +35,16 @@ public class ExecuteHandlerTest {
 	@Test
 	public void exec() throws JSchException {
 		String username = "root";
-		String host = "openldap.jd.com";
+		String host = "openldap.lhfei.com";
 		ExecuteHandler handler = new ExecuteHandler(username, host);
 		
 		String command = "kadmin -padmin/admin -wPolaris@Root#01 -q \"listprincs\"";
-		command = "kadmin -padmin/admin -wPolaris@Root#01 -q 'getprinc kafka/openldap.jd.com@POLARIS.JD.COM'";
-		command = "kadmin -padmin/admin -wPolaris@Root#01 -q 'addprinc -randkey lhfei/openldap.jd.com@POLARIS.JD.COM'";
+		command = "kadmin -padmin/admin -wPolaris@Root#01 -q 'getprinc kafka/openldap.lhfei.com@POLARIS.lhfei.COM'";
+		command = "kadmin -padmin/admin -wPolaris@Root#01 -q 'addprinc -randkey lhfei/openldap.lhfei.com@POLARIS.lhfei.COM'";
 		
 		handler.execute(command);
 		
-		command = "kadmin -padmin/admin -wPolaris@Root#01 -q 'getprinc lhfei/openldap.jd.com@POLARIS.JD.COM'";
+		command = "kadmin -padmin/admin -wPolaris@Root#01 -q 'getprinc lhfei/openldap.lhfei.com@POLARIS.lhfei.COM'";
 		handler.execute(command);
 		
 	}

@@ -6,7 +6,7 @@ server:
 logging:
   level:
     .: info
-    com.jd.auth: debug
+    com.lhfei.auth: debug
     org.springframework: info
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
@@ -17,4 +17,4 @@ krb5:
   kdcserver:
     username: root
     password: Lhfei@01
-    hostname: openldap.jd.com
+    hostname: openldap.lhfei.com

@@ -1,4 +1,4 @@
-package com.jd.auth.ldap;
+package cn.lhfei.auth.security;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,9 +7,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class LdapAuthApplicationTests {
+public class AuthKerberosApplicationTests {
 
 	@Test
 	public void contextLoads() {
 	}
+
 }

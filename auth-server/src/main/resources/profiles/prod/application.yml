@@ -10,7 +10,7 @@ spring:
   ldap:
     base: dc=jd,dc=com
     urls:
-    - ldap://openldap.jd.com:389
+    - ldap://openldap.lhfei.com:389
     username: cn=Manager,dc=jd,dc=com
     password: Polaris@Root#01
 
@@ -20,7 +20,7 @@ spring:
 logging:
   level:
     .: info
-    com.jd.security.auth: debug
+    com.lhfei.security.auth: debug
     org.springframework: info
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

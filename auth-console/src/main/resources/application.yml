@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.149.91:3306/auth_console
+    url: jdbc:mysql://1270.0.1:3306/auth_console
     username: root
     password: Lhfei
 
@@ -20,7 +20,7 @@ spring:
 logging:
   level:
     .: info
-    com.jd.auth: debug
+    com.lhfei.auth: debug
     org.springframework: info
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

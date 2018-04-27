@@ -6,7 +6,7 @@ server:
 logging:
   level:
     .: info
-    com.jd.auth.ldap: debug
+    com.lhfei.auth.ldap: debug
     org.springframework: info
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
@@ -14,4 +14,4 @@ logging:
 
 auth:
   ldap:
-    url: ldap://openldap.jd.com:389
+    url: ldap://openldap.lhfei.com:389

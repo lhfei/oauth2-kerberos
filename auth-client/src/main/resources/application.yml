@@ -14,10 +14,10 @@ security:
     client:
       clientId: SampleClientId
       clientSecret: secret
-      accessTokenUri: http://galaxy.jd.local/oauth2/oauth/token
-      userAuthorizationUri: http://galaxy.jd.local/oauth2/oauth/authorize
+      accessTokenUri: http://galaxy.lhfei.local/oauth2/oauth/token
+      userAuthorizationUri: http://galaxy.lhfei.local/oauth2/oauth/authorize
     resource:
-      userInfoUri: http://galaxy.jd.local/oauth2/whoami
+      userInfoUri: http://galaxy.lhfei.local/oauth2/whoami
       
 logging:
   level:
