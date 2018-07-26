@@ -1,0 +1,19 @@
+<div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="1" [nzXs]="2">
+      <label for="dbs" nz-form-item-required>DATABASE</label>
+    </div>
+    <div nz-form-control nz-col [nzSm]="10" [nzXs]="10">
+        <nz-select name="dbs"
+          [nzMode]="'multiple'"
+          [nzPlaceHolder]="'Select Database'"
+          [(ngModel)]="selectedMultipleOption"
+          [nzNotFoundContent]="'Not Found ...'">
+          <nz-option
+            *ngFor="let option of databases"
+            [nzLabel]="option.dbName"
+            [nzValue]="option.dbName"
+            [nzDisabled]="option.disabled">
+          </nz-option>
+        </nz-select>
+    </div>
+</div>

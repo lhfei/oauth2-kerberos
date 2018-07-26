@@ -1,0 +1,31 @@
+<!-- <div class="main-container">
+    
+</div> -->
+
+    <div class="content-container partial-nested-icon-menu">
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapse">
+
+            <ng-container *ngFor="let item of case.items">
+
+                <clr-vertical-nav-group *ngIf="item['children']">
+                    <clr-icon [attr.shape]="item.icon" *ngIf="item['icon']" clrVerticalNavIcon></clr-icon>
+                    {{item.label}}
+                    <clr-vertical-nav-group-children *clrIfExpanded="true">
+                        <a clrVerticalNavLink routerLink="{{childItem['url']}}" *ngFor="let childItem of item.children">
+                            {{childItem.label}}
+                        </a>
+                    </clr-vertical-nav-group-children>
+                </clr-vertical-nav-group>
+
+                <a clrVerticalNavLink routerLink="javascript:void(0)" *ngIf="!item['children']">
+                    <clr-icon [attr.shape]="item.icon" *ngIf="item['icon']" clrVerticalNavIcon></clr-icon>
+                    {{item.label}}
+                </a>
+
+            </ng-container>
+
+        </clr-vertical-nav>
+    </div>

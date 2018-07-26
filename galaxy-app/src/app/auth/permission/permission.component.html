@@ -1,0 +1,105 @@
+<form *ngIf="roleType=='vender'"><!-- Search Form -->
+  <div class="form-group row">
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="user_type">用户名</label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="user_type" placeholder="Enter user name here" size="20" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="user_type">状态</label>
+    </div>
+    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+      <div class="select form-control">
+        <select id="user_type">
+          <option>All</option>
+          <option>JD Passport</option>
+          <option>JD ERP</option>
+          <option>JD ECLP</option>
+        </select>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="form-group row">
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="user_type">所属商家</label>
+    </div>
+    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+      <div class="select form-control">
+        <select id="user_type">
+          <option>All</option>
+          <option>JD Passport</option>
+          <option>JD ERP</option>
+          <option>JD ECLP</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <button type="submit" class="btn btn-primary btn-sm">
+        <clr-icon shape="search"></clr-icon>
+        Search
+      </button>
+    </div>
+  </div>
+</form>
+
+<form *ngIf="roleType=='operator'">
+  <div class="form-group row">
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="user_type">ERP账号</label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="user_type" placeholder="Enter user name here" size="20" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="user_type">状态</label>
+    </div>
+    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+      <div class="select form-control">
+        <select id="user_type">
+          <option>All</option>
+          <option>JD Passport</option>
+          <option>JD ERP</option>
+          <option>JD ECLP</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <button type="submit" class="btn btn-primary btn-sm">
+        <clr-icon shape="search"></clr-icon>
+        Search
+      </button>
+    </div>
+  </div>
+
+</form><!-- // Search Form -->
+
+<div class="card-title">
+    <button class="btn btn-danger btn-sm" [disabled]="!selected" (click)="delete(selected)">
+      <clr-icon shape="remove"></clr-icon>
+    批量管理角色
+    </button>
+  
+</div>
+
+<div class="card-text">
+  <clr-datagrid [(clrDgSelected)]="selected">
+    <clr-dg-column [clrDgField]="'id'">User ID</clr-dg-column>
+    <clr-dg-column [clrDgField]="'username'">User Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'userType'">User Type</clr-dg-column>
+    <clr-dg-column [clrDgField]="'createTime'">Creation date</clr-dg-column>
+    
+    <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+      <clr-dg-cell>{{user.id}}</clr-dg-cell>
+      <clr-dg-cell>{{user.userName}}</clr-dg-cell>
+      <clr-dg-cell>{{user.userType}}</clr-dg-cell>
+      <clr-dg-cell>{{user.createTime | date}}</clr-dg-cell>
+    </clr-dg-row>
+    
+    <clr-dg-footer>{{users.length}} users</clr-dg-footer>
+  </clr-datagrid>
+  
+</div>

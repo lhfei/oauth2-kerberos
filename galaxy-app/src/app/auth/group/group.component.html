@@ -1,0 +1,129 @@
+<form><!-- Search Form -->
+  <div class="form-group row">
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="group_cn">Group Name</label>
+    </div>
+    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="g_cn" name="cn" placeholder="Enter user cn here" size="20" [(ngModel)]="group.cn" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="group_uid">Group ID</label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="g_gidNumber" name="gidNumber" placeholder="Enter user uid here" size="20" [(ngModel)]="group.gidNumber" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <button class="btn btn-primary btn-sm" (click)="search()">
+        <clr-icon shape="search"></clr-icon>
+        Search
+      </button>
+      <button class="btn btn-primary btn-sm" (click)="reset(groupForm)">
+        <clr-icon shape="search"></clr-icon>
+        Reset
+      </button>
+    </div>
+  </div>
+</form><!-- // Search Form -->
+
+<div class="card-title"><!-- Data Grid Actions -->
+  <!-- <div class="btn-group btn-primary"> -->
+    <button class="btn btn-primary btn-sm" (click)="create()">
+      <clr-icon shape="add"></clr-icon>
+    Add
+    </button>
+
+    <button class="btn btn-primary btn-sm" [disabled]="!singleSelected" (click)="update(singleSelected)">
+      <clr-icon shape="edit"></clr-icon>
+    Edit
+    </button>
+
+    <button class="btn btn-danger btn-sm" [disabled]="!singleSelected" (click)="delete(singleSelected)">
+      <clr-icon shape="remove"></clr-icon>
+    Remove
+    </button>
+  
+</div><!-- // Data Grid Actions -->
+
+<div class="card-text"><!-- Data Grid -->
+  <clr-datagrid [(clrDgSingleSelected)]="singleSelected">
+    <clr-dg-column [clrDgField]="'cn'">CN</clr-dg-column>
+    <clr-dg-column [clrDgField]="'gidNumber'">GID Number</clr-dg-column>
+
+    <clr-dg-column [clrDgField]="'dn'">DN</clr-dg-column>
+    <clr-dg-column [clrDgField]="'dn'">Description</clr-dg-column>
+    <clr-dg-column [clrDgField]="'modifyTime'">Modify Date</clr-dg-column>
+    <clr-dg-column [clrDgField]="'createTime'">Create Date</clr-dg-column>
+    <clr-dg-row *clrDgItems="let group of groups" [clrDgItem]="group">
+      <clr-dg-cell>{{group.cn}}</clr-dg-cell>
+      <clr-dg-cell>{{group.gidNumber}}</clr-dg-cell>
+      <clr-dg-cell>{{group.dn}}</clr-dg-cell>
+      <clr-dg-cell>{{group.description}}</clr-dg-cell>
+      <clr-dg-cell>{{group.modifyTime | date}}</clr-dg-cell>
+      <clr-dg-cell>{{group.createTime | date}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{groups.length}} groups</clr-dg-footer>
+  </clr-datagrid>
+  
+</div><!-- //Data Grid -->
+
+<!-- Create|Update Form -->
+<clr-modal [(clrModalOpen)]="showForm" ng-class="fadeDown in">
+    <h4 class="modal-title">Add Group</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <form #groupForm="ngForm" class="form" (ngSubmit)="onSubmit(groupForm, group)">
+            <section class="form-block">
+                <div class="form-group">
+                    <label for="group_cn">CN</label>
+                    <input type="text" id="group_cn" name="cn" [(ngModel)]="group.cn" placeholder="Common Name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="group_uidNumber">GID Number</label>
+                    <input type="text" id="group_gidNumber" name="gidNumber" [(ngModel)]="group.gidNumber" placeholder="GID Number" />
+                </div>
+
+                <div class="form-group">
+                    <label for="group_description">Description</label>
+                    <input type="text" id="group_description" name="description" [(ngModel)]="group.description" placeholder="Description" />
+                </div>
+                
+            </section>
+
+            <section>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-outline" (click)="showForm = false">Cancel</button>
+              </div>
+            </section>
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+    </div>
+</clr-modal>
+<!-- // Create|Update Form -->
+
+<clr-modal [(clrModalOpen)]="showMsg" ng-class="fadeDown in">
+    <h4 class="modal-title">Info</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <div class="alert {{opsMsgType}}">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        {{opsMessage}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer"></div>
+</clr-modal>

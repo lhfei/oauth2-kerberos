@@ -1,0 +1,144 @@
+swagger: '2.0'
+info:
+  description: '[无界零售] 项目,Polaris团队提供的支持接口. 用于完成文件上传, DMP 文件包导入, 检索等功能.'
+  version: 0.2.0
+  title: '无界零售项目'
+host: 'polaris.jd.com'
+basePath: '/api/v1'
+tags:
+  - name: 九数操作
+    description: 提供给九数，实现文件上传、预测结果回传等接口.
+  - name: 中台操作API
+    description: DMP包操作API
+schemes:
+  - https
+paths:
+  /prediction/file:
+    post:
+      tags:
+        - 九数操作
+      summary: 回写用户上传文件
+      description: '用户在九数平台完成文件上传后,  九数平台回传文件到北极星'
+      operationId: save
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: '#/definitions/FileModel'
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /dmp/file:
+    post:
+      tags:
+        - 九数操作
+      summary: 回写Pino预测结果
+      description: '九数平台完成预测流程后, 将预测结果以Pin包形式回传到北极星.'
+      operationId: save2
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: '#/definitions/FileModel'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /dmp/files:
+    get:
+      tags:
+        - 中台操作API
+      summary: 返回DMP包列表
+      description: Returns a map of status codes to quantities
+      operationId: getInventory
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            additionalProperties:
+              type: integer
+              format: int32
+      security:
+        - api_key: []
+  /dmp/order:
+    post:
+      tags:
+        - 中台操作API
+      summary: Place an order for a pet
+      description: ''
+      operationId: import
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: order placed for purchasing the pet
+          required: true
+          schema:
+            $ref: '#/definitions/FileModel'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: ''
+        '400':
+          description: Invalid Order
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+    flow: implicit
+    scopes:
+      'write:pets': modify pets in your account
+      'read:pets': read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  FileModel:
+    type: object
+    properties:
+      pin:
+        type: string
+      fileId:
+        type: integer
+        format: int64
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string

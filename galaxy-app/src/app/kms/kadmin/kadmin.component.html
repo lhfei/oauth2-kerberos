@@ -1,0 +1,25 @@
+<div><!-- Data Grid Actions -->
+    <button class="btn btn-primary btn-lg" [disabled]="!closed" (click)="connect()">
+        <clr-icon shape="connect"></clr-icon>
+        Connect
+    </button>
+    <button class="btn btn-primary btn-lg" [disabled]="closed" (click)="disconnect()">
+        <clr-icon shape="disconnect"></clr-icon>
+        Disconnect
+    </button>
+
+	<button class="btn btn-primary btn-lg" (click)="getCommand()">
+        <clr-icon shape="code"></clr-icon>
+        CODE
+    </button>
+</div><!-- // Data Grid Actions -->
+
+<ace-editor #editor
+   [(text)]="command" 
+   [mode]="'sh'"
+   [options]="options"
+   [readOnly]="closed"
+   [autoUpdateContent]="true"
+   [durationBeforeCallback]="1000"
+   (textChanged)="onChange($event)"
+   style="min-height: 200px; width:100%; overflow: auto;"></ace-editor>

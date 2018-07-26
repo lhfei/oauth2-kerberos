@@ -1,0 +1,34 @@
+    <div class="login-wrapper">
+        <form #employeeForm="ngForm" class="login" >
+            <label class="title">
+                <h4 class="welcome">Welcome to</h4>
+                DATA THINKER
+                <h5 class="hint">Use your Company ID to sign in or create one now</h5>
+            </label>
+            <div class="login-group">
+                <div class="auth-source select">
+                    <select id="login-auth-source-1">
+                        <option>Local Users</option>
+                        <option>Administrator</option>
+                    </select>
+                </div>
+                <input class="username" type="text" id="login_username" placeholder="Username" required>
+                <input class="password" type="password" id="login_password" placeholder="Password">
+                <div class="checkbox">
+                    <input type="checkbox" id="rememberme">
+                    <label for="rememberme">
+                        Remember me
+                    </label>
+                </div>
+                <div class="error">
+                    Invalid user name or password
+                </div>
+                <button class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active" [disabled]="employeeForm.form.invalid">Sign In</button>
+                <div>
+                    Don't hava an account?<a href="javascript://" class="signup">Sign up</a>
+                </div>
+            </div>
+        </form>
+    </div>
+<!-- <section id="homeContext">
+</section> -->

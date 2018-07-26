@@ -1,0 +1,221 @@
+<!-- <header class="header header-3">
+    <div class="branding">
+        <a href="#" class="nav-link" [routerLink]="['../instances']" routerLinkActive="active">
+            <clr-icon shape="cluster" class="has-badge is-solid"></clr-icon>
+
+        <span class="title">Cluster</span></a> <span class="title"> / {{cluster.name}}</span>
+        
+    </div>
+</header> -->
+
+<a href="#" class="label label-light-blue clickable" [routerLink]="['../instances']" routerLinkActive="active">
+    <span class="title">Cluster</span>
+</a><span>/</span> <span class="label label-light-blue">{{cluster.name}}</span>
+<hr />
+
+<clr-tabs>
+    <clr-tab>
+        <button clrTabLink>Configuration</button>
+        <ng-template [(clrIfActive)]="dashboardActive">
+            <clr-tab-content>
+                <!-- Configuration -->
+                <div class="card-columns">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="...">
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                ...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card card-block">
+                        <h3 class="card-title">Title</h3>
+                        <p class="card-text">
+                            ...
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-block">
+                            <p class="card-text">
+                                ...
+                            </p>
+                        </div>
+                        <div class="card-img">
+                            <img src="...">
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                                ...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card card-block">
+                        <h3 class="card-title">Title</h3>
+                        <p class="card-text">
+                            ...
+                        </p>
+                    </div>
+                    <div href="..." class="card">
+                        <div class="card-block">
+                            <p class="card-text">
+                                ...
+                            </p>
+                        </div>
+                        <div class="card-img">
+                            <img src="...">
+                        </div>
+                    </div>
+                    <div class="card card-block">
+                        <h3 class="card-title">Title</h3>
+                        <p class="card-text">
+                            ...
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-block">
+                            <h3 class="card-title">Title</h3>
+                            <p class="card-text">
+                                ...
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="..." class="btn btn-primary">Action</a>
+                        </div>
+                    </div>
+                    <a href="..." class="card clickable">
+                        <div class="card-block">
+                            <p class="card-text">
+                                ...
+                            </p>
+                        </div>
+                        <div class="card-img">
+                            <img src="...">
+                        </div>
+                    </a>
+                </div>
+
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>Components</button>
+        <ng-template [(clrIfActive)]="managementActive">
+            <clr-tab-content>
+                <!-- Component -->              
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Spark2 History Server
+                            </div>
+                            <div class="card-block">
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary">Action</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Spark2 Thrift Servers
+                            </div>
+                            <div class="card-block">
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary">Action</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Spark2 Clients
+                            </div>
+                            <div class="card-block">
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary">Action</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>Spark UI</button>
+        <ng-template [(clrIfActive)]="cloudActive">
+            <clr-tab-content>
+                <iframe src="http://galaxy.jd.local/cluster" frameborder="0" width="100%" style="height: 90%"></iframe>
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>Driver Logs</button>
+        <ng-template [(clrIfActive)]="infrastructureActive">
+            <clr-tab-content>
+                
+                <!-- Mat TAB -->
+                <mat-card>
+                  <mat-card-content>
+                    <h2 class="example-h2">Tabs with text labels</h2>
+                    <mat-tab-group class="demo-tab-group">
+                      <mat-tab label="Tab 1">
+                        <div class="demo-tab-content">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                        </div>
+                      </mat-tab>
+                      <mat-tab label="Tab 2">
+                        <div class="demo-tab-content">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                        </div>  
+                      </mat-tab>
+                      <mat-tab label="Tab 3" disabled>
+                        No content  
+                      </mat-tab>
+                      <mat-tab label="Tab 4">
+                        <div class="demo-tab-content">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                          <br />
+                          <br />
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                        </div>  
+                      </mat-tab>
+                      <mat-tab label="Tab 5">
+                        No content  
+                      </mat-tab>
+                      <mat-tab label="Tab 6">
+                        No content  
+                      </mat-tab>
+                    </mat-tab-group>
+                  </mat-card-content>
+                </mat-card>
+
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+</clr-tabs>

@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://1270.0.1:3306/auth_console
+    url: jdbc:mysql://mysql.lhfei.local:3306/auth_console
     username: root
     password: Lhfei
 

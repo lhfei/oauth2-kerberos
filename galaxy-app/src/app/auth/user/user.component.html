@@ -1,0 +1,152 @@
+<form><!-- Search Form -->
+  <div class="form-group row">
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="user_cn">User Name</label>
+    </div>
+    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="p_cn" name="cn" placeholder="Enter user cn here" size="20" [(ngModel)]="person.cn" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="user_uid">User ID</label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="p_uid" name="uid" placeholder="Enter user uid here" size="20" [(ngModel)]="person.uid" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <button class="btn btn-primary btn-sm" (click)="search()">
+        <clr-icon shape="search"></clr-icon>
+        Search
+      </button>
+      <button class="btn btn-primary btn-sm" (click)="reset(personForm)">
+        <clr-icon shape="search"></clr-icon>
+        Reset
+      </button>
+    </div>
+  </div>
+</form><!-- // Search Form -->
+
+<div class="card-title"><!-- Data Grid Actions -->
+    <button class="btn btn-primary btn-sm" (click)="create()">
+        <clr-icon shape="add"></clr-icon>
+        Add User
+    </button>
+    <button class="btn btn-primary btn-sm" [disabled]="!singleSelected" (click)="update(singleSelected)">
+        <clr-icon shape="edit"></clr-icon>
+        Edit User
+    </button>
+    <button class="btn btn-danger btn-sm" [disabled]="!singleSelected" (click)="delete(singleSelected)">
+        <clr-icon shape="remove"></clr-icon>
+        Remove User
+    </button>
+</div><!-- // Data Grid Actions -->
+
+<div class="card-text"><!-- Data Grid -->
+    <clr-datagrid [(clrDgSingleSelected)]="singleSelected">
+        <clr-dg-column [clrDgField]="'uidNumber'">UID Number</clr-dg-column>
+        <clr-dg-column [clrDgField]="'uid'">UID</clr-dg-column>
+        <clr-dg-column [clrDgField]="'cn'">CN</clr-dg-column>
+        <clr-dg-column [clrDgField]="'gidNumber'">GID Number</clr-dg-column>
+        <clr-dg-column [clrDgField]="'email'">EMail</clr-dg-column>
+        <clr-dg-column [clrDgField]="'mobile'">Mobile</clr-dg-column>
+        <clr-dg-column [clrDgField]="'dn'">DN</clr-dg-column>
+        <!-- <clr-dg-column [clrDgField]="'modifyTime'">Modify Date</clr-dg-column>
+          <clr-dg-column [clrDgField]="'createTime'">Create Date</clr-dg-column> -->
+        <clr-dg-row *clrDgItems="let person of persons" [clrDgItem]="person">
+            <clr-dg-cell>{{person.uidNumber}}</clr-dg-cell>
+            <clr-dg-cell>{{person.uid}}</clr-dg-cell>
+            <clr-dg-cell>{{person.cn}}</clr-dg-cell>
+            <clr-dg-cell>{{person.gidNumber}}</clr-dg-cell>
+            <clr-dg-cell>{{person.email}}</clr-dg-cell>
+            <clr-dg-cell>{{person.mobile}}</clr-dg-cell>
+            <clr-dg-cell>{{person.dn}}</clr-dg-cell>
+            <!-- <clr-dg-cell>{{person.modifyTime | date}}</clr-dg-cell>
+            <clr-dg-cell>{{person.createTime | date}}</clr-dg-cell> -->
+        </clr-dg-row>
+        <clr-dg-footer>{{persons.length}} persons</clr-dg-footer>
+    </clr-datagrid>
+</div><!-- // Data Grid -->
+
+<!-- Create|Update Form -->
+<clr-modal [(clrModalOpen)]="showForm" ng-class="fadeDown in">
+    <h4 class="modal-title">Add User</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <form #personForm="ngForm" class="form" (ngSubmit)="onSubmit(personForm, person)">
+            <section class="form-block">
+                
+                <div class="form-group">
+                    <label for="user_id">UID</label>
+                    <input type="text" id="user_id" name="uid" [(ngModel)]="person.uid" placeholder="User ID" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="user_password">Password</label>
+                    <input type="password" id="user_password" name="userPassword" [(ngModel)]="person.userPassword" placeholder="Password" />
+
+                    <input type="password" id="user_password2" name="userPassword2" [(ngModel)]="person.userPassword2" placeholder="ReEnter Password" />
+                </div>
+
+                <div class="form-group">
+                    <label for="user_cn">CN</label>
+                    <input type="text" id="user_cn" name="cn" [(ngModel)]="person.cn" placeholder="Common Name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="user_uidNumber">UID Number</label>
+                    <input type="text" id="user_uidNumber" name="uidNumber" [(ngModel)]="person.uidNumber" placeholder="UID Number" />
+                </div>
+
+                <div class="form-group">
+                    <label for="user_mail">Mail</label>
+                    <input type="text" id="user_mail" name="email" [(ngModel)]="person.email" placeholder="EMail Address" />
+                </div>
+
+                <div class="form-group">
+                    <label for="user_mobile">Mobile</label>
+                    <input type="text" id="user_mobile" name="mobile" [(ngModel)]="person.mobile" placeholder="Mobile Number" />
+                </div>
+
+                <div class="form-group">
+                    <label for="user_description">Description</label>
+                    <input type="text" id="user_description" name="description" [(ngModel)]="person.description" placeholder="Description" />
+                </div>
+                
+            </section>
+
+            <section>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-outline" (click)="showForm = false">Cancel</button>
+              </div>
+            </section>
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+    </div>
+</clr-modal>
+<!-- // Create|Update Form -->
+
+<clr-modal [(clrModalOpen)]="showMsg" ng-class="fadeDown in">
+    <h4 class="modal-title">Info</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <div class="alert {{opsMsgType}}">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        {{opsMessage}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer"></div>
+</clr-modal>

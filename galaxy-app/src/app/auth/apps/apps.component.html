@@ -1,0 +1,51 @@
+<form><!-- Search Form -->
+    <div class="form-group row">
+        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <label for="app_name">App Name</label>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <input class="form-control" type="text" id="app_name" #appName placeholder="Enter app name here" size="20">
+        </div>
+        
+        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <button type="submit" class="btn btn-primary btn-sm">
+            <clr-icon shape="search"></clr-icon>
+            Search
+            </button>
+        </div>
+    </div>
+</form><!-- // Search Form -->
+<div class="card-text"><!-- Data Grid Actions -->
+    <button class="btn btn-primary btn-sm">
+        <clr-icon shape="add"></clr-icon>
+        Add App
+    </button>
+    <button class="btn btn-primary btn-sm" [disabled]="!singleSelected">
+        <clr-icon shape="edit"></clr-icon>
+        Edit App
+    </button>
+    <button class="btn btn-danger btn-sm" [disabled]="!singleSelected">
+        <clr-icon shape="remove"></clr-icon>
+        Remove App
+    </button>
+</div><!-- Data Grid Actions -->
+
+<div class="card-title"><!-- Data Grid -->
+    <clr-datagrid [(clrDgSingleSelected)]="singleSelected">
+        <clr-dg-column>App ID</clr-dg-column>
+        <clr-dg-column [clrDgField]="'appName'">Name</clr-dg-column>
+        <clr-dg-column [clrDgField]="'appKey'">App Key</clr-dg-column>
+        <clr-dg-column [clrDgField]="'createTime'">Creation date</clr-dg-column>
+        <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let app of apps" [clrDgItem]="app">
+            <clr-dg-cell>{{app.id}}</clr-dg-cell>
+            <clr-dg-cell>{{app.appName}}</clr-dg-cell>
+            <clr-dg-cell>{{app.appKey}}</clr-dg-cell>
+            <clr-dg-cell>{{app.createTime | date}}</clr-dg-cell>
+            <clr-dg-cell>{{app.description}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>{{apps.length}} apps</clr-dg-footer>
+    </clr-datagrid>
+</div><!-- // Data Grid -->

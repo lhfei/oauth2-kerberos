@@ -1,0 +1,153 @@
+<form><!-- Search Form -->
+  <div class="form-group row">
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="host_cn">Host Name</label>
+    </div>
+    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="host_name" name="clusterName" placeholder="Enter Host name here" size="20" [(ngModel)]="host.clusterName" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="host_uid">User ID</label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="host_uid" name="uid" placeholder="Enter user uid here" size="20" [(ngModel)]="host.uid" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <button class="btn btn-primary btn-sm" (click)="search()">
+        <clr-icon shape="search"></clr-icon>
+        Search
+      </button>
+      <button class="btn btn-primary btn-sm" (click)="reset(clusterForm)">
+        <clr-icon shape="search"></clr-icon>
+        Reset
+      </button>
+    </div>
+  </div>
+</form><!-- // Search Form -->
+
+
+<div><!-- Data Grid Actions -->
+    <button class="btn btn-primary btn-sm" (click)="create()">
+      <clr-icon shape="add"></clr-icon>
+    Add User
+    </button>
+
+    <button class="btn btn-primary btn-sm" [disabled]="!singleSelected" (click)="update(singleSelected)">
+      <clr-icon shape="edit"></clr-icon>
+    Edit User
+    </button>
+
+    <button class="btn btn-danger btn-sm" [disabled]="!singleSelected" (click)="delete(singleSelected)">
+      <clr-icon shape="remove"></clr-icon>
+    Remove User
+    </button>
+  
+</div><!-- // Data Grid Actions -->
+
+<div><!-- Data Grid -->
+  <clr-datagrid [(clrDgSingleSelected)]="singleSelected">
+    <clr-dg-column><ng-container *clrDgHideableColumn="{hidden: true}">ID</ng-container></clr-dg-column>
+    <clr-dg-column [clrDgField]="'clusterId'">Cluster</clr-dg-column>
+    <clr-dg-column [clrDgField]="'hostName'">Host Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'ipv4'">IPV4</clr-dg-column>
+    <clr-dg-column [clrDgField]="'ipv6'">IPV6</clr-dg-column>
+    <clr-dg-column [clrDgField]="'cpuCount'">CPU Cores</clr-dg-column>
+    <clr-dg-column [clrDgField]="'cpuInfo'">Cpu Info</clr-dg-column>
+    <clr-dg-column [clrDgField]="'totalMem'">Memory</clr-dg-column>
+    <clr-dg-column [clrDgField]="'osType'">OS</clr-dg-column>
+    <clr-dg-column [clrDgField]="'clusterInfo'">Host Info</clr-dg-column>
+    <clr-dg-column [clrDgField]="'modifyTime'">Modify Time</clr-dg-column>
+    <clr-dg-column [clrDgField]="'createTime'">Create Time</clr-dg-column>
+    <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+    
+    <clr-dg-row *clrDgItems="let host of hosts" [clrDgItem]="host">
+      <clr-dg-cell>{{host.hostId}}</clr-dg-cell>
+      <clr-dg-cell>{{host.clusterId}}</clr-dg-cell>
+      <clr-dg-cell>{{host.hostName}}</clr-dg-cell>
+      <clr-dg-cell>{{host.ipv4}}</clr-dg-cell>
+      <clr-dg-cell>{{host.ipv6}}</clr-dg-cell>
+      <clr-dg-cell>{{host.cpuCount}}</clr-dg-cell>
+      <clr-dg-cell>{{host.cpuInfo}}</clr-dg-cell>
+      <clr-dg-cell>{{host.totalMem}}</clr-dg-cell>
+      <clr-dg-cell>{{host.osType}}</clr-dg-cell>
+      <clr-dg-cell>{{host.modifyTime}}</clr-dg-cell>
+      <clr-dg-cell>{{host.createTime}}</clr-dg-cell>
+      <clr-dg-cell>{{host.description}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{hosts.length}} hosts</clr-dg-footer>
+  </clr-datagrid>
+  
+</div><!-- // Data Grid -->
+
+<!-- Create|Update Form -->
+<clr-modal [(clrModalOpen)]="showForm" ng-class="fadeDown in">
+    <h4 class="modal-title">Add Host</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <form #clusterForm="ngForm" class="form" (ngSubmit)="onSubmit(clusterForm, cluster)">
+            <section class="form-block">
+
+                <div class="form-group">
+                    <label for="host_clusterName">Host Name</label>
+                    <input type="text" id="host_clusterName" name="clusterName" [(ngModel)]="host.clusterName" placeholder="Common Name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="host_uidNumber">Host Owner</label>
+                    <input type="text" id="host_uid" name="uid" [(ngModel)]="host.uid" placeholder="UID Number" />
+                </div>
+
+                <div class="form-group">
+                    <label for="host_mail">Host Info</label>
+                    <input type="text" id="host_info" name="clusterInfo" [(ngModel)]="host.clusterInfo" placeholder="EMail Address" />
+                </div>
+
+                <div class="form-group">
+                    <label for="host_mobile">Security Type</label>
+                    <input type="text" id="host_securityType" name="mobile" [(ngModel)]="host.securityType" readonly="" />
+                </div>
+
+                <div class="form-group">
+                    <label for="host_description">Description</label>
+                    <input type="text" id="host_description" name="description" [(ngModel)]="host.description" placeholder="Description" />
+                </div>
+                
+            </section>
+
+            <section>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-outline" (click)="showForm = false">Cancel</button>
+              </div>
+            </section>
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+    </div>
+</clr-modal>
+<!-- // Create|Update Form -->
+
+<clr-modal [(clrModalOpen)]="showMsg" ng-class="fadeDown in">
+    <h4 class="modal-title">Info</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <div class="alert {{opsMsgType}}">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        {{opsMessage}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer"></div>
+</clr-modal>

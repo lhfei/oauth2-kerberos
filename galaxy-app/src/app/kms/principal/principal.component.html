@@ -1,0 +1,129 @@
+<form><!-- Search Form -->
+  <div class="form-group row">
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="principal_cn">Principal Name</label>
+    </div>
+    <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="principal_name" name="principalName" placeholder="Enter Principal name here" size="20" [(ngModel)]="principal.principalName" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <label for="principal_uid">User ID</label>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+      <input class="form-control" type="text" id="_principalId" name="principalId" placeholder="Enter user uid here" size="20" [(ngModel)]="principal.principalId" />
+    </div>
+    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <button class="btn btn-primary btn-sm" (click)="search()">
+        <clr-icon shape="search"></clr-icon>
+        Search
+      </button>
+      <button class="btn btn-primary btn-sm" (click)="reset(principalForm)">
+        <clr-icon shape="search"></clr-icon>
+        Reset
+      </button>
+    </div>
+  </div>
+</form><!-- // Search Form -->
+
+<div><!-- Data Grid Actions -->
+    <button class="btn btn-primary btn-sm" (click)="create()">
+        <clr-icon shape="add"></clr-icon>
+        Add User
+    </button>
+    <button class="btn btn-primary btn-sm" [disabled]="!singleSelected" (click)="update(singleSelected)">
+        <clr-icon shape="edit"></clr-icon>
+        Edit User
+    </button>
+    <button class="btn btn-danger btn-sm" [disabled]="!singleSelected" (click)="delete(singleSelected)">
+        <clr-icon shape="remove"></clr-icon>
+        Remove User
+    </button>
+</div><!-- // Data Grid Actions -->
+
+<div><!-- Data Grid -->
+    <clr-datagrid [(clrDgSingleSelected)]="singleSelected">
+        <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: true}">ID</ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'principalName'">Principal Name</clr-dg-column>
+        <clr-dg-column [clrDgField]="'principalPath'">Principal Path</clr-dg-column>
+        <clr-dg-column [clrDgField]="'modifyTime'">Modify Time</clr-dg-column>
+        <clr-dg-column [clrDgField]="'createTime'">Create Time</clr-dg-column>
+        <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+        <clr-dg-row *clrDgItems="let principal of principals" [clrDgItem]="principal">
+            <clr-dg-cell>{{principal.principalId}}</clr-dg-cell>
+            <clr-dg-cell>{{principal.principalName}}</clr-dg-cell>
+            <clr-dg-cell>{{principal.principalPath}}</clr-dg-cell>
+            <clr-dg-cell>{{principal.modifyTime}}</clr-dg-cell>
+            <clr-dg-cell>{{principal.createTime}}</clr-dg-cell>
+            <clr-dg-cell>{{principal.description}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-footer>{{principals.length}} principals</clr-dg-footer>
+    </clr-datagrid>
+</div><!-- // Data Grid -->
+
+
+
+
+<!-- Create|Update Form -->
+<clr-modal [(clrModalOpen)]="showForm" ng-class="fadeDown in">
+    <h4 class="modal-title">Add Principal</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <form #principalForm="ngForm" class="form" (ngSubmit)="onSubmit(principalForm, principal)">
+            <section class="form-block">
+
+                <div class="form-group">
+                    <label for="principal_principalName">Principal Name</label>
+                    <input type="text" id="principal_principalName" name="principalName" [(ngModel)]="principal.principalName" placeholder="Common Name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="principal_uidNumber">Principal Path</label>
+                    <input type="text" id="principalPath" name="principalPath" [(ngModel)]="principal.principalPath" placeholder="Principal location" />
+                </div>
+
+                <div class="form-group">
+                    <label for="principal_description">Description</label>
+                    <input type="text" id="principal_description" name="description" [(ngModel)]="principal.description" placeholder="Description" />
+                </div>
+                
+            </section>
+
+            <section>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-outline" (click)="showForm = false">Cancel</button>
+              </div>
+            </section>
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+    </div>
+</clr-modal>
+<!-- // Create|Update Form -->
+
+<clr-modal [(clrModalOpen)]="showMsg" ng-class="fadeDown in">
+    <h4 class="modal-title">Info</h4>
+    <hr>
+
+    <div class="modal-body">
+        <hr>
+        <div class="alert {{opsMsgType}}">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        {{opsMessage}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer"></div>
+</clr-modal>

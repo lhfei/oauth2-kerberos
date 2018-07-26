@@ -1,0 +1,107 @@
+<!-- <clr-tabs>
+    <clr-tab>
+      <button class="btn btn-icon btn-primary" clrTabLink>
+        <clr-icon shape="storage"></clr-icon>&nbsp;QUERY
+      </button>
+        <ng-template [(clrIfActive)]="dashboardActive">
+            <clr-tab-content>
+              <hquery-view [databases] = "databases"></hquery-view>
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>JOBS</button>
+        <ng-template [(clrIfActive)]="managementActive">
+            <clr-tab-content>
+                JOBS
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>TABLES</button>
+        <ng-template [(clrIfActive)]="cloudActive">
+            <clr-tab-content>
+                TABLES
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>SAVED QUERIES</button>
+        <ng-template [(clrIfActive)]="infrastructureActive">
+            <clr-tab-content>
+                SAVED QUERIES
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>UDFs</button>
+        <ng-template [(clrIfActive)]="infrastructureActive">
+            <clr-tab-content>
+                UDFs
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>    
+
+    <clr-tab>
+        <button clrTabLink>SETTINGS</button>
+        <ng-template [(clrIfActive)]="infrastructureActive">
+            <clr-tab-content>
+                SETTINGS
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+</clr-tabs> -->
+
+<nz-tabset [nzType]="'line'">
+    <nz-tab>
+        <ng-template #nzTabHeading>
+            <div>
+                <i class="anticon anticon-code"></i>
+                QUERY
+            </div>
+        </ng-template>
+        
+        <span>
+            <hquery-view [databases] = "databases"></hquery-view>
+        </span>
+
+    </nz-tab>
+
+    <nz-tab>
+        <ng-template #nzTabHeading>
+          JOBS
+        </ng-template>
+    </nz-tab>
+
+    <nz-tab>
+        <ng-template #nzTabHeading>
+          TABLES
+        </ng-template>
+    </nz-tab>
+
+    <nz-tab>
+        <ng-template #nzTabHeading>
+            <div>
+                <i class="anticon anticon-paper-clip"></i>
+                SAVED QUERIES
+            </div>
+        </ng-template>
+    </nz-tab>
+
+    <nz-tab>
+        <ng-template #nzTabHeading>
+          UDFs
+        </ng-template>
+    </nz-tab>
+
+    <nz-tab>
+        <ng-template #nzTabHeading>
+          SETTINGS
+        </ng-template>
+    </nz-tab>
+</nz-tabset>

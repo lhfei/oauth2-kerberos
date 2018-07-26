@@ -1,0 +1,45 @@
+<div class="main-container">
+    <div class="content-container partial-nested-icon-menu">
+        <div class="content-area">
+            <!-- <div>
+                <button class="btn gemini-trigger" (click)="collapse = !collapse">Toggle Collapse</button>
+            </div> -->
+            
+            <!-- <router-outlet></router-outlet> -->
+
+            <iframe [src]="destination | safe" allowfullscreen width="100%" frameborder="0" height="96%" 
+                webkitallowfullscreen mozallowfullscreen allowfullscreen>
+            </iframe>
+
+        </div>
+        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapse">
+
+            <ng-container *ngFor="let item of menu.items">
+
+                <clr-vertical-nav-group *ngIf="item['children']">
+                    <clr-icon [attr.shape]="item.icon" *ngIf="item['icon']" clrVerticalNavIcon></clr-icon>
+                    {{item.label}}
+                    <clr-vertical-nav-group-children *clrIfExpanded="true">
+                        
+                        <!-- <a clrVerticalNavLink routerLink="javascript:void(0)"  (click)="forward('www.bing.com')" *ngFor="let childItem of item.children">
+                            {{childItem.label}}
+                        </a> -->
+
+                        <a clrVerticalNavLink href="javascript:void(0);" *ngFor="let childItem of item.children" (click)="forward(childItem.url)"  style="width:100%: height: 100%">{{childItem.label}}</a>
+                        <!-- <a clrVerticalNavLink (click)="forward('www.bing.com')" *ngFor="let childItem of item.children">
+                            {{childItem.label}}
+                        </a> -->
+
+                    </clr-vertical-nav-group-children>
+                </clr-vertical-nav-group>
+
+                <a clrVerticalNavLink routerLink="javascript:void(0)" *ngIf="!item['children']">
+                    <clr-icon [attr.shape]="item.icon" *ngIf="item['icon']" clrVerticalNavIcon></clr-icon>
+                    {{item.label}}
+                </a>
+
+            </ng-container>
+
+        </clr-vertical-nav>
+    </div>
+</div>
