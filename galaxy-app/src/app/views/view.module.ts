@@ -6,7 +6,7 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { ClarityModule } from 'clarity-angular';
+import { ClarityModule } from '@clr/angular';
 
 import { ViewRoutingModule } from './view.routing';
 import { ViewComponent } from './view.component';

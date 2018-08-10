@@ -8,7 +8,7 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { ClarityModule } from 'clarity-angular';
+import { ClarityModule } from '@clr/angular';
 
 import { AuthMenuService } from './auth-menu.service';
 import { AuthRoutingModule } from './auth.routing';

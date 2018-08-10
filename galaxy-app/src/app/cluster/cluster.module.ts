@@ -7,7 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { MatCardModule,  MatTabsModule, MatIconModule } from '@angular/material';
-import { ClarityModule } from 'clarity-angular';
+import { ClarityModule } from '@clr/angular';
 
 import { ClusterRoutingModule } from './cluster.routing';
 import { ClusterComponent } from './cluster.component';
